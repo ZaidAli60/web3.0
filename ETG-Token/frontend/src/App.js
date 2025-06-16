@@ -12,10 +12,9 @@ function App() {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-md-8 col-lg-6">
-              <div className="card glass-card text-center bg-transparent text-white">
+              <div className="card glass-card text-center bg-transparent text-white shadow-lg">
                 <h4 className="mb-3">Emerging Tech Grid <span className="badge bg-secondary">ETG</span></h4>
                 <p><strong>Contract Address:</strong> <span>0x96e3c5c12c...</span></p>
-                <p><strong>Wallet Address:</strong> <span>0x3c2Bc7a5d...</span></p>
                 <p><strong>Total Supply:</strong> 99650.00</p>
 
                 <hr className="text-white" />

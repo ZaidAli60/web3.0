@@ -30,5 +30,5 @@ body, html, .App {
   border-radius: 15px;
   padding: 20px;
   color: white;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 50px rgb(78, 30, 30)
 }
