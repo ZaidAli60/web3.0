@@ -238,7 +238,7 @@ const contractAbi = [
     "type": "function"
   }
 ]
-const contractAddress = "0xFb3263b3AB9BE60f0627EF44cfb8C98F296cb530";
+const contractAddress = "0x9c50d8C29A686B5C30091A7F438955b19a9313be";
 
 function App() {
 
@@ -251,6 +251,7 @@ function App() {
   const [amount, setAmount] = useState('');
   const [checkAddress, setCheckAddress] = useState("");
   const [web3, setWeb3] = useState(null);
+  const [isTransferring, setIsTransferring] = useState(false);
 
   const connectWallet = async () => {
     if (window.ethereum) {
@@ -258,7 +259,6 @@ function App() {
         const web3 = new Web3(window.ethereum);
         await window.ethereum.request({ method: 'eth_requestAccounts' });
         const accounts = await web3.eth.getAccounts();
-        console.log("accounts", accounts);
         setAccount(accounts[0]);
         setWeb3(web3)
 
@@ -288,6 +288,7 @@ function App() {
 
   const handleTransfer = async () => {
     // return
+    setIsTransferring(true)
     if (token && recipient && amount) {
       try {
         const gasPrice = await web3.eth.getGasPrice();
@@ -310,6 +311,7 @@ function App() {
         console.error('Transfer failed:', err);
         alert('Transfer failed');
       }
+      setIsTransferring(false)
     }
   };
 
@@ -386,10 +388,21 @@ function App() {
                   min="0"
                   step="any"
                 />
-                <button className="btn btn-danger w-100"
+                {/* <button className="btn btn-danger w-100"
                   onClick={handleTransfer}
                   disabled={!recipient || !amount}
-                >Transfer Tokens</button>
+                >Transfer Tokens</button> */}
+                <button className="btn btn-danger w-100" onClick={handleTransfer} disabled={isTransferring || !recipient || !amount}>
+                  {isTransferring ? (
+                    <>
+                      <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                      Transferring...
+                    </>
+                  ) : (
+                    'Transfer Tokens'
+                  )}
+                </button>
+
 
                 <hr className="text-white" />
 
